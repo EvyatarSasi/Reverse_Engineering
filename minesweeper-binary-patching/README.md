@@ -2,7 +2,7 @@
 
 Analysis and modification of the 32-bit Windows Minesweeper executable using IDA and its Local Windows Debugger. The project investigates the board's memory representation, traces initialization code, and adds behavior through binary patches.
 
-**[Read the complete report](WriteUp2.pdf)** — 22 pages in Hebrew, including disassembly, memory addresses, patch bytes, and screenshots.
+**[Read the complete report](minesweeper-technical-report.pdf)** — 22 pages in Hebrew, including disassembly, memory addresses, patch bytes, and screenshots.
 
 ## Executable versions
 

@@ -4,26 +4,41 @@ Coursework covering 32-bit x86 assembly, Windows APIs, executable analysis, and 
 
 The original reports are in Hebrew; this page provides an English guide to the work.
 
+## Technical Write-ups
+
+### Minesweeper - Binary Patching
+- [Full Technical Report (PDF)](minesweeper-binary-patching/minesweeper-technical-report.pdf)
+
+### Wonderland - Executable Analysis
+- [Complete Analysis with IDA Screenshots](executable-analysis/reversing_workspace/final/wonderland-analysis.md)
+- [Complete Report (PDF)](executable-analysis/reversing_workspace/final/wonderland.pdf)
+
+#### Individual Stage Reports
+- [Stage 2 - XOR Decoding](executable-analysis/reversing_workspace/final/wonderland_stage2_writeup.md)
+- [Stage 3 - Signed Comparisons](executable-analysis/reversing_workspace/final/wonderland_stage3_writeup.md)
+- [Stage 4 - Pointer Analysis](executable-analysis/reversing_workspace/final/wonderland_stage4_writeup.md)
+- [Stage 5 - Maze Reconstruction](executable-analysis/reversing_workspace/final/wonderland_stage5_writeup.md)
+
 ## Start here
 
-- **[Minesweeper final project](Final-Assignment/WriteUp2.pdf)** — a 22-page report documenting runtime investigation, board memory layout, hardware breakpoints, and patches, with four corresponding executable versions in [Final-Assignment](Final-Assignment/).
-- **[Wonderland analysis](Assignment-02/reversing_workspace/final/final.md)** — illustrated walkthrough of stages 2–5, covering XOR decoding, signed comparisons, pointers, and a maze encoded in memory. Also available as a [PDF](Assignment-02/reversing_workspace/final/wonderland.pdf).
-- **[C reconstruction of rect.exe](Assignment-02/reversing_workspace/final/rect.c)** — reconstruction of a rectangle-drawing program, including its calling convention, loops, and buffer layout. See the [IDA disassembly](Assignment-02/reversing_workspace/ida_exports/rect/) for supporting evidence.
+- **[Minesweeper final project](minesweeper-binary-patching/minesweeper-technical-report.pdf)** — a 22-page report documenting runtime investigation, board memory layout, hardware breakpoints, and patches, with four corresponding executable versions in [Final-Assignment](minesweeper-binary-patching/).
+- **[Wonderland analysis](executable-analysis/reversing_workspace/final/wonderland-analysis.md)** — illustrated walkthrough of stages 2–5, covering XOR decoding, signed comparisons, pointers, and a maze encoded in memory. Also available as a [PDF](executable-analysis/reversing_workspace/final/wonderland.pdf).
+- **[C reconstruction of rect.exe](executable-analysis/reversing_workspace/final/rect.c)** — reconstruction of a rectangle-drawing program, including its calling convention, loops, and buffer layout. See the [IDA disassembly](executable-analysis/reversing_workspace/ida_exports/rect/) for supporting evidence.
 
 ## Assignments
 
 | Assignment | Focus | Files |
 | --- | --- | --- |
-| 1 — Assembly and Windows APIs | Control flow, calling conventions, console input, byte order, file and registry access | [Assignment guide](Assignment-01/README.md) |
-| 2 — Executable analysis | C reconstruction and analysis of Wonderland stages 2–5 | [Assignment guide](Assignment-02/README.md) |
-| Final — Minesweeper | Dynamic analysis, memory inspection, and binary patching | [Project guide](Final-Assignment/README.md) |
+| 1 — Assembly and Windows APIs | Control flow, calling conventions, console input, byte order, file and registry access | [Assignment guide](assembly-fundamentals/README.md) |
+| 2 — Executable analysis | C reconstruction and analysis of Wonderland stages 2–5 | [Assignment guide](executable-analysis/README.md) |
+| Final — Minesweeper | Dynamic analysis, memory inspection, and binary patching | [Project guide](minesweeper-binary-patching/README.md) |
 
 ### Assignment 1
 
-- [Exercise 1](Assignment-01/exercises/ex1/): iterative Collatz sequence processing.
-- [Exercise 2](Assignment-01/exercises/ex2/): multiplication routines using different calling conventions and parameter-passing methods. Both development and submission variants are retained.
-- [Exercise 3](Assignment-01/exercises/ex3/): console input and string length using Windows APIs and the C runtime.
-- [Exercise 4](Assignment-01/exercises/ex4/): byte-order conversion with input from the console, a file, and the Windows registry.
+- [Exercise 1](assembly-fundamentals/exercises/ex1/): iterative Collatz sequence processing.
+- [Exercise 2](assembly-fundamentals/exercises/ex2/): multiplication routines using different calling conventions and parameter-passing methods. Both development and submission variants are retained.
+- [Exercise 3](assembly-fundamentals/exercises/ex3/): console input and string length using Windows APIs and the C runtime.
+- [Exercise 4](assembly-fundamentals/exercises/ex4/): byte-order conversion with input from the console, a file, and the Windows registry.
 
 ### Assignment 2
 
@@ -31,7 +46,7 @@ The deliverables include `rect.c`, individual Wonderland write-ups, a combined r
 
 ### Additional practice
 
-[Practice](Practice/README.md) contains smaller exercises in memory addressing, comparisons, loops, register operations, XOR decoding, and byte-order conversion. These files are kept separately from the assignment submissions.
+[Practice](assembly-practice/README.md) contains smaller exercises in memory addressing, comparisons, loops, register operations, XOR decoding, and byte-order conversion. These files are kept separately from the assignment submissions.
 
 ## Tools and environment
 
@@ -45,10 +60,10 @@ The assembly sources target 32-bit Windows PE executables and reference FASM's `
 ## Repository contents
 
 ```text
-Assignment-01/       Assembly exercises, supporting files, and executables
-Assignment-02/       Analysis deliverables, disassembly, and supporting material
-Final-Assignment/    Minesweeper report and four patched executables
-Practice/            Additional assembly exercises
+assembly-fundamentals/       Assembly exercises, supporting files, and executables
+executable-analysis/       Analysis deliverables, disassembly, and supporting material
+minesweeper-binary-patching/    Minesweeper report and four patched executables
+assembly-practice/            Additional assembly exercises
 ```
 
-Course-supplied binaries, teaching examples, library files, and reference materials are included alongside the coursework. They are supporting inputs, not claims of original authorship; original attribution in the files is retained. See [Assignment 2's reference materials](Assignment-02/reversing_workspace/materials/) for the course documents and examples.
+Course-provided reference materials are excluded from this portfolio. Original analysis, reports, and supporting evidence are available above.
