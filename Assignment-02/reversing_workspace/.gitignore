@@ -1,0 +1,8 @@
+CLAUDE.local.md
+*.idb
+*.i64
+*.til
+*.nam
+*.dbg
+*.bak
+*.tmp

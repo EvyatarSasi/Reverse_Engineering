@@ -1,0 +1,75 @@
+.text:004010B0 sub_4010B0      proc near               ; CODE XREF: sub_40134E+F8↓p
+.text:004010B0
+.text:004010B0 Size            = dword ptr -14h
+.text:004010B0 Block           = dword ptr -10h
+.text:004010B0 var_C           = byte ptr -0Ch
+.text:004010B0 var_8           = byte ptr -8
+.text:004010B0 var_4           = dword ptr -4
+.text:004010B0
+.text:004010B0                 push    ebp
+.text:004010B1                 mov     ebp, esp
+.text:004010B3                 sub     esp, 14h
+.text:004010B6                 mov     eax, ___security_cookie
+.text:004010BB                 xor     eax, ebp
+.text:004010BD                 mov     [ebp+var_4], eax
+.text:004010C0                 push    offset aEnterBase ; "Enter base: "
+.text:004010C5                 call    sub_401240
+.text:004010CA                 add     esp, 4
+.text:004010CD                 lea     eax, [ebp+var_C]
+.text:004010D0                 push    eax             ; char
+.text:004010D1                 push    offset Format   ; "%d"
+.text:004010D6                 call    sub_4011C0
+.text:004010DB                 add     esp, 8
+.text:004010DE                 push    offset aEnterHeight ; "Enter height: "
+.text:004010E3                 call    sub_401240
+.text:004010E8                 add     esp, 4
+.text:004010EB                 lea     ecx, [ebp+var_8]
+.text:004010EE                 push    ecx             ; char
+.text:004010EF                 push    offset aD_0     ; "%d"
+.text:004010F4                 call    sub_4011C0
+.text:004010F9                 add     esp, 8
+.text:004010FC                 mov     edx, dword ptr [ebp+var_C]
+.text:004010FF                 add     edx, 1
+.text:00401102                 imul    edx, dword ptr [ebp+var_8]
+.text:00401106                 add     edx, 1
+.text:00401109                 mov     [ebp+Size], edx
+.text:0040110C                 mov     eax, [ebp+Size]
+.text:0040110F                 push    eax             ; Size
+.text:00401110                 call    ds:malloc
+.text:00401116                 add     esp, 4
+.text:00401119                 mov     [ebp+Block], eax
+.text:0040111C                 cmp     [ebp+Block], 0
+.text:00401120                 jnz     short loc_401136
+.text:00401122                 push    offset aMemoryAllocati ; "Memory allocation failed\n"
+.text:00401127                 call    sub_401240
+.text:0040112C                 add     esp, 4
+.text:0040112F                 mov     eax, 1
+.text:00401134                 jmp     short loc_401167
+.text:00401136
+.text:00401136 loc_401136:
+.text:00401136                 mov     ecx, [ebp+Block]
+.text:00401139                 push    ecx
+.text:0040113A                 mov     edx, dword ptr [ebp+var_8]
+.text:0040113D                 push    edx
+.text:0040113E                 mov     eax, dword ptr [ebp+var_C]
+.text:00401141                 push    eax
+.text:00401142                 call    sub_401000
+.text:00401147                 mov     ecx, [ebp+Block]
+.text:0040114A                 push    ecx             ; char
+.text:0040114B                 push    offset aS       ; "%s"
+.text:00401150                 call    sub_401240
+.text:00401155                 add     esp, 8
+.text:00401158                 mov     edx, [ebp+Block]
+.text:0040115B                 push    edx             ; Block
+.text:0040115C                 call    ds:free
+.text:00401162                 add     esp, 4
+.text:00401165                 xor     eax, eax
+.text:00401167
+.text:00401167 loc_401167:
+.text:00401167                 mov     ecx, [ebp+var_4]
+.text:0040116A                 xor     ecx, ebp        ; StackCookie
+.text:0040116C                 call    @__security_check_cookie@4 ; __security_check_cookie(x)
+.text:00401171                 mov     esp, ebp
+.text:00401173                 pop     ebp
+.text:00401174                 retn
+.text:00401174 sub_4010B0      endp

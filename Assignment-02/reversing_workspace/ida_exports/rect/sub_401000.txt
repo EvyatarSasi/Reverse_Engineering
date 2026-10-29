@@ -1,0 +1,85 @@
+.text:00401000 sub_401000      proc near               ; CODE XREF: sub_4010B0+92↓p
+.text:00401000
+.text:00401000 var_C           = dword ptr -0Ch
+.text:00401000 var_8           = dword ptr -8
+.text:00401000 var_4           = dword ptr -4
+.text:00401000 arg_0           = dword ptr  8
+.text:00401000 arg_4           = dword ptr  0Ch
+.text:00401000 arg_8           = dword ptr  10h
+.text:00401000
+.text:00401000                 push    ebp
+.text:00401001                 mov     ebp, esp
+.text:00401003                 sub     esp, 0Ch
+.text:00401006                 mov     [ebp+var_4], 0
+.text:0040100D                 mov     eax, [ebp+arg_4]
+.text:00401010                 mov     [ebp+var_8], eax
+.text:00401013                 jmp     short loc_40101E
+.text:00401015
+.text:00401015 loc_401015:
+.text:00401015                 mov     ecx, [ebp+var_8]
+.text:00401018                 sub     ecx, 1
+.text:0040101B                 mov     [ebp+var_8], ecx
+.text:0040101E
+.text:0040101E loc_40101E:
+.text:0040101E                 cmp     [ebp+var_8], 0
+.text:00401022                 jle     short loc_401093
+.text:00401024                 mov     edx, [ebp+arg_0]
+.text:00401027                 mov     [ebp+var_C], edx
+.text:0040102A                 jmp     short loc_401035
+.text:0040102C
+.text:0040102C loc_40102C:
+.text:0040102C                 mov     eax, [ebp+var_C]
+.text:0040102F                 sub     eax, 1
+.text:00401032                 mov     [ebp+var_C], eax
+.text:00401035
+.text:00401035 loc_401035:
+.text:00401035                 cmp     [ebp+var_C], 0
+.text:00401039                 jle     short loc_40107F
+.text:0040103B                 mov     ecx, [ebp+var_8]
+.text:0040103E                 cmp     ecx, [ebp+arg_4]
+.text:00401041                 jz      short loc_401057
+.text:00401043                 cmp     [ebp+var_8], 1
+.text:00401047                 jz      short loc_401057
+.text:00401049                 mov     edx, [ebp+var_C]
+.text:0040104C                 cmp     edx, [ebp+arg_0]
+.text:0040104F                 jz      short loc_401057
+.text:00401051                 cmp     [ebp+var_C], 1
+.text:00401055                 jnz     short loc_40106B
+.text:00401057
+.text:00401057 loc_401057:
+.text:00401057                 mov     eax, [ebp+arg_8]
+.text:0040105A                 add     eax, [ebp+var_4]
+.text:0040105D                 mov     byte ptr [eax], 2Ah ; '*'
+.text:00401060                 mov     ecx, [ebp+var_4]
+.text:00401063                 add     ecx, 1
+.text:00401066                 mov     [ebp+var_4], ecx
+.text:00401069                 jmp     short loc_40107D
+.text:0040106B
+.text:0040106B loc_40106B:
+.text:0040106B                 mov     edx, [ebp+arg_8]
+.text:0040106E                 add     edx, [ebp+var_4]
+.text:00401071                 mov     byte ptr [edx], 20h ; ' '
+.text:00401074                 mov     eax, [ebp+var_4]
+.text:00401077                 add     eax, 1
+.text:0040107A                 mov     [ebp+var_4], eax
+.text:0040107D
+.text:0040107D loc_40107D:
+.text:0040107D                 jmp     short loc_40102C
+.text:0040107F
+.text:0040107F loc_40107F:
+.text:0040107F                 mov     ecx, [ebp+arg_8]
+.text:00401082                 add     ecx, [ebp+var_4]
+.text:00401085                 mov     byte ptr [ecx], 0Ah
+.text:00401088                 mov     edx, [ebp+var_4]
+.text:0040108B                 add     edx, 1
+.text:0040108E                 mov     [ebp+var_4], edx
+.text:00401091                 jmp     short loc_401015
+.text:00401093
+.text:00401093 loc_401093:
+.text:00401093                 mov     eax, [ebp+arg_8]
+.text:00401096                 add     eax, [ebp+var_4]
+.text:00401099                 mov     byte ptr [eax], 0
+.text:0040109C                 mov     esp, ebp
+.text:0040109E                 pop     ebp
+.text:0040109F                 retn    0Ch
+.text:0040109F sub_401000      endp

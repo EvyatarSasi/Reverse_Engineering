@@ -1,0 +1,105 @@
+sub_401650      proc near               ; CODE XREF: sub_401E00:loc_401E3D↓p
+.text:00401650
+.text:00401650 var_808         = byte ptr -808h
+.text:00401650 var_409         = byte ptr -409h
+.text:00401650 Buffer          = byte ptr -408h
+.text:00401650 NumberOfBytesRead= dword ptr -8
+.text:00401650 hFile           = dword ptr -4
+.text:00401650
+.text:00401650                 push    ebp
+.text:00401651                 mov     ebp, esp
+.text:00401653                 sub     esp, 808h
+.text:00401659                 push    offset aYouMayEnterBut ; "You may enter, but can you find the Que"...
+.text:0040165E                 call    sub_401DC0
+.text:00401663                 add     esp, 4
+.text:00401666
+.text:00401666 loc_401666:                             ; CODE XREF: sub_401650+90↓j
+.text:00401666                                         ; sub_401650+D0↓j ...
+.text:00401666                 mov     eax, 1
+.text:0040166B                 test    eax, eax
+.text:0040166D                 jz      loc_401768
+.text:00401673                 push    0               ; Ix
+.text:00401675                 call    ds:__acrt_iob_func
+.text:0040167B                 add     esp, 4
+.text:0040167E                 push    eax             ; Stream
+.text:0040167F                 push    3FFh            ; MaxCount
+.text:00401684                 lea     ecx, [ebp+Buffer]
+.text:0040168A                 push    ecx             ; Buffer
+.text:0040168B                 call    ds:fgets
+.text:00401691                 add     esp, 0Ch
+.text:00401694                 lea     edx, [ebp+Buffer]
+.text:0040169A                 push    edx             ; Str
+.text:0040169B                 call    strlen
+.text:004016A0                 add     esp, 4
+.text:004016A3                 mov     [ebp+eax+var_409], 0
+.text:004016AB                 push    0               ; hTemplateFile
+.text:004016AD                 push    80h             ; dwFlagsAndAttributes
+.text:004016B2                 push    3               ; dwCreationDisposition
+.text:004016B4                 push    0               ; lpSecurityAttributes
+.text:004016B6                 push    1               ; dwShareMode
+.text:004016B8                 push    80000000h       ; dwDesiredAccess
+.text:004016BD                 lea     eax, [ebp+Buffer]
+.text:004016C3                 push    eax             ; lpFileName
+.text:004016C4                 call    ds:CreateFileA
+.text:004016CA                 mov     [ebp+hFile], eax
+.text:004016CD                 cmp     [ebp+hFile], 0FFFFFFFFh
+.text:004016D1                 jnz     short loc_4016E2
+.text:004016D3                 push    offset aWrong_0 ; "Wrong!\r\n"
+.text:004016D8                 call    sub_401DC0
+.text:004016DD                 add     esp, 4
+.text:004016E0                 jmp     short loc_401666
+.text:004016E2 ; ---------------------------------------------------------------------------
+.text:004016E2
+.text:004016E2 loc_4016E2:                             ; CODE XREF: sub_401650+81↑j
+.text:004016E2                 mov     [ebp+NumberOfBytesRead], 0
+.text:004016E9                 push    0               ; lpOverlapped
+.text:004016EB                 lea     ecx, [ebp+NumberOfBytesRead]
+.text:004016EE                 push    ecx             ; lpNumberOfBytesRead
+.text:004016EF                 push    400h            ; nNumberOfBytesToRead
+.text:004016F4                 lea     edx, [ebp+var_808]
+.text:004016FA                 push    edx             ; lpBuffer
+.text:004016FB                 mov     eax, [ebp+hFile]
+.text:004016FE                 push    eax             ; hFile
+.text:004016FF                 call    ds:ReadFile
+.text:00401705                 test    eax, eax
+.text:00401707                 jnz     short loc_401725
+.text:00401709                 push    offset aError   ; "ERROR!\r\n"
+.text:0040170E                 call    sub_401DC0
+.text:00401713                 add     esp, 4
+.text:00401716                 mov     ecx, [ebp+hFile]
+.text:00401719                 push    ecx             ; hObject
+.text:0040171A                 call    ds:CloseHandle
+.text:00401720                 jmp     loc_401666
+.text:00401725 ; ---------------------------------------------------------------------------
+.text:00401725
+.text:00401725 loc_401725:                             ; CODE XREF: sub_401650+B7↑j
+.text:00401725                 mov     edx, [ebp+hFile]
+.text:00401728                 push    edx             ; hObject
+.text:00401729                 call    ds:CloseHandle
+.text:0040172F                 lea     eax, [ebp+var_808]
+.text:00401735                 push    eax
+.text:00401736                 call    sub_401770
+.text:0040173B                 add     esp, 4
+.text:0040173E                 test    eax, eax
+.text:00401740                 jnz     short loc_401754
+.text:00401742                 push    offset aYouAreLost ; "You are lost!\r\n"
+.text:00401747                 call    sub_401DC0
+.text:0040174C                 add     esp, 4
+.text:0040174F                 jmp     loc_401666
+.text:00401754 ; ---------------------------------------------------------------------------
+.text:00401754
+.text:00401754 loc_401754:                             ; CODE XREF: sub_401650+F0↑j
+.text:00401754                 push    offset aYouHaveFoundTh ; "You have found the Queen's palace!\r\n"
+.text:00401759                 call    sub_401DC0
+.text:0040175E                 add     esp, 4
+.text:00401761                 jmp     short loc_401768
+.text:00401763 ; ---------------------------------------------------------------------------
+.text:00401763                 jmp     loc_401666
+.text:00401768 ; ---------------------------------------------------------------------------
+.text:00401768
+.text:00401768 loc_401768:                             ; CODE XREF: sub_401650+1D↑j
+.text:00401768                                         ; sub_401650+111↑j
+.text:00401768                 mov     esp, ebp
+.text:0040176A                 pop     ebp
+.text:0040176B                 retn
+.text:0040176B sub_401650      endp
