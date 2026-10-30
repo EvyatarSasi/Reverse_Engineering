@@ -1,69 +1,131 @@
-# Introduction to Reverse Engineering
+# Reverse Engineering & x86 Assembly
 
-Coursework covering 32-bit x86 assembly, Windows APIs, executable analysis, and binary patching. The repository contains assembly exercises, a C reconstruction, analysis reports, IDA evidence, and a final project on Windows Minesweeper.
+A collection of hands-on projects exploring **32-bit x86 assembly, Windows executable analysis, reverse engineering, and binary patching**.
 
-The original reports are in Hebrew; this page provides an English guide to the work.
+The work includes reconstructing program logic from disassembly, investigating memory structures, working with Windows APIs, and modifying executable behavior.
 
-## Technical Write-ups
+These projects were developed as part of academic coursework. Technical reports, source code, and supporting evidence are included.
 
-### Minesweeper - Binary Patching
-- [Full Technical Report (PDF)](minesweeper-binary-patching/minesweeper-technical-report.pdf)
+## Featured Projects
 
-### Wonderland - Executable Analysis
-- [Complete Analysis with IDA Screenshots](executable-analysis/reversing_workspace/final/wonderland-analysis.md)
-- [Complete Report (PDF)](executable-analysis/reversing_workspace/final/wonderland.pdf)
+### 1. Windows Minesweeper — Reverse Engineering & Binary Patching
 
-#### Individual Stage Reports
-- [Stage 2 - XOR Decoding](executable-analysis/reversing_workspace/final/wonderland_stage2_writeup.md)
-- [Stage 3 - Signed Comparisons](executable-analysis/reversing_workspace/final/wonderland_stage3_writeup.md)
-- [Stage 4 - Pointer Analysis](executable-analysis/reversing_workspace/final/wonderland_stage4_writeup.md)
-- [Stage 5 - Maze Reconstruction](executable-analysis/reversing_workspace/final/wonderland_stage5_writeup.md)
+Analyzed and modified a 32-bit Windows Minesweeper executable using **IDA and the Local Windows Debugger**.
 
-## Start here
+The project involved investigating the game's internal memory representation, identifying relevant instructions, and implementing binary modifications.
 
-- **[Minesweeper final project](minesweeper-binary-patching/minesweeper-technical-report.pdf)** — a 22-page report documenting runtime investigation, board memory layout, hardware breakpoints, and patches, with four corresponding executable versions in [Final-Assignment](minesweeper-binary-patching/).
-- **[Wonderland analysis](executable-analysis/reversing_workspace/final/wonderland-analysis.md)** — illustrated walkthrough of stages 2–5, covering XOR decoding, signed comparisons, pointers, and a maze encoded in memory. Also available as a [PDF](executable-analysis/reversing_workspace/final/wonderland.pdf).
-- **[C reconstruction of rect.exe](executable-analysis/reversing_workspace/final/rect.c)** — reconstruction of a rectangle-drawing program, including its calling convention, loops, and buffer layout. See the [IDA disassembly](executable-analysis/reversing_workspace/ida_exports/rect/) for supporting evidence.
+**Key techniques:**
 
-## Assignments
+* Memory analysis and hardware breakpoints.
+* Disassembly, cross-references, and control-flow investigation.
+* Mapping virtual addresses to executable file offsets.
+* Patching machine instructions and redirecting the PE entry point.
+* Dynamically resolving Windows API functions.
 
-| Assignment | Focus | Files |
-| --- | --- | --- |
-| 1 — Assembly and Windows APIs | Control flow, calling conventions, console input, byte order, file and registry access | [Assignment guide](assembly-fundamentals/README.md) |
-| 2 — Executable analysis | C reconstruction and analysis of Wonderland stages 2–5 | [Assignment guide](executable-analysis/README.md) |
-| Final — Minesweeper | Dynamic analysis, memory inspection, and binary patching | [Project guide](minesweeper-binary-patching/README.md) |
+**Four executable variants were developed:**
 
-### Assignment 1
+1. Automatically flagging mines.
+2. Modifying the game to enable a quick victory.
+3. Displaying a startup message through a binary modification.
+4. Performing a local HTTP request using dynamically resolved WinINet functions.
 
-- [Exercise 1](assembly-fundamentals/exercises/ex1/): iterative Collatz sequence processing.
-- [Exercise 2](assembly-fundamentals/exercises/ex2/): multiplication routines using different calling conventions and parameter-passing methods. Both development and submission variants are retained.
-- [Exercise 3](assembly-fundamentals/exercises/ex3/): console input and string length using Windows APIs and the C runtime.
-- [Exercise 4](assembly-fundamentals/exercises/ex4/): byte-order conversion with input from the console, a file, and the Windows registry.
+**Documentation:**
 
-### Assignment 2
+* [Technical Report — 22 pages (PDF)](minesweeper-binary-patching/minesweeper-technical-report.pdf)
+* [Project Details and Executable Versions](minesweeper-binary-patching/README.md)
 
-The deliverables include `rect.c`, individual Wonderland write-ups, a combined report, screenshots, and disassembly exports. The Wonderland reports describe static analysis for all four stages, with Python used for calculations derived from the disassembly.
+---
 
-### Additional practice
+### 2. Wonderland — Static Reverse Engineering
 
-[Practice](assembly-practice/README.md) contains smaller exercises in memory addressing, comparisons, loops, register operations, XOR decoding, and byte-order conversion. These files are kept separately from the assignment submissions.
+Performed static analysis of a multi-stage Windows executable using **IDA**.
 
-## Tools and environment
+The objective was to understand the program's behavior by examining its disassembly and reconstructing the logic behind individual stages.
 
-- **x86 assembly / FASM syntax** for the assembly exercises.
-- **C** for the reconstruction of `rect.exe`.
-- **IDA** for disassembly, graph views, cross-references, and the final project's Windows debugging workflow.
-- **Windows API** calls for console, file, and registry access.
+**Analyzed stages:**
 
-The assembly sources target 32-bit Windows PE executables and reference FASM's `win32a.inc`; exercises that use `training.inc` include a local copy. Building them requires a configured FASM Windows include environment. The C reconstruction uses `__stdcall` and is intended for an x86 Windows C toolchain. This repository does not include an automated build or test pipeline.
+* **Stage 2:** XOR decoding.
+* **Stage 3:** Signed comparisons and index ordering.
+* **Stage 4:** Pointer interpretation and memory access.
+* **Stage 5:** File input and maze validation.
 
-## Repository contents
+The analysis was performed without executing or patching the Wonderland binary. Python was used for calculations derived from the recovered logic.
 
-```text
-assembly-fundamentals/       Assembly exercises, supporting files, and executables
-executable-analysis/       Analysis deliverables, disassembly, and supporting material
-minesweeper-binary-patching/    Minesweeper report and four patched executables
-assembly-practice/            Additional assembly exercises
-```
+**Documentation:**
 
-Course-provided reference materials are excluded from this portfolio. Original analysis, reports, and supporting evidence are available above.
+* [Complete Analysis with IDA Screenshots](executable-analysis/reversing_workspace/final/wonderland-analysis.md)
+* [Complete Technical Report (PDF)](executable-analysis/reversing_workspace/final/wonderland.pdf)
+
+**Individual Write-ups:**
+
+* [Stage 2 — XOR Decoding](executable-analysis/reversing_workspace/final/wonderland_stage2_writeup.md)
+* [Stage 3 — Signed Comparisons](executable-analysis/reversing_workspace/final/wonderland_stage3_writeup.md)
+* [Stage 4 — Pointer Analysis](executable-analysis/reversing_workspace/final/wonderland_stage4_writeup.md)
+* [Stage 5 — Maze Reconstruction](executable-analysis/reversing_workspace/final/wonderland_stage5_writeup.md)
+
+---
+
+### 3. Executable Reconstruction — Assembly to C
+
+Analyzed `rect.exe`, a Windows program that draws rectangles, and reconstructed its behavior in C.
+
+The reconstruction focuses on understanding the original executable's:
+
+* Control flow and loops.
+* Function calling conventions.
+* Memory and buffer layout.
+* Program behavior inferred from disassembly.
+
+**Source and Evidence:**
+
+* [Reconstructed C Source Code](executable-analysis/reversing_workspace/final/rect.c)
+* [IDA Disassembly Exports](executable-analysis/reversing_workspace/ida_exports/rect/)
+
+---
+
+### 4. x86 Assembly & Windows API Programming
+
+Implemented assembly-language exercises using **FASM**, targeting 32-bit Windows.
+
+Topics include:
+
+* Control flow, loops, and conditional branches.
+* Stack operations and calling conventions.
+* Register-based and stack-based parameter passing.
+* Console input and output.
+* File access and Windows Registry operations.
+* Byte-order conversion and memory manipulation.
+
+**Source Code:**
+
+* [Assembly Exercises](assembly-fundamentals/README.md)
+* [Additional Assembly Practice](assembly-practice/README.md)
+
+## Technical Skills Demonstrated
+
+| Area                  | Technologies & Techniques                                  |
+| --------------------- | ---------------------------------------------------------- |
+| Low-Level Programming | x86 Assembly, FASM, C                                      |
+| Reverse Engineering   | IDA, Disassembly, Static Analysis                          |
+| Debugging             | Windows Debugging, Hardware Breakpoints, Memory Inspection |
+| Binary Modification   | Machine-Code Patching, PE Entry-Point Redirection          |
+| Windows Development   | Windows API, WinINet, DLL Function Resolution              |
+| Program Analysis      | Control Flow, Calling Conventions, Memory Layout           |
+
+## Repository Structure
+
+| Directory                                                   | Contents                                                                           |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [minesweeper-binary-patching](minesweeper-binary-patching/) | Minesweeper reverse engineering project, patched executables, and technical report |
+| [executable-analysis](executable-analysis/)                 | Wonderland analysis, C reconstruction, IDA evidence, and write-ups                 |
+| [assembly-fundamentals](assembly-fundamentals/)             | x86 assembly exercises and Windows API programming                                 |
+| [assembly-practice](assembly-practice/)                     | Additional low-level programming exercises                                         |
+
+## Notes
+
+* The original technical reports are primarily written in **Hebrew**. This README provides an English overview.
+* The projects target **32-bit Windows executables**.
+* Assembly exercises require FASM and the appropriate Windows include files.
+* Existing executables were preserved and were not rebuilt or retested during repository organization.
+* The repository does not currently include an automated build or test pipeline.
+* Course-provided reference materials are excluded from the current repository structure.
